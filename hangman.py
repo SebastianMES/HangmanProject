@@ -6,16 +6,30 @@
 import random
 #Create Global variables
 word_list = ["Apple", "Banana", "Pineapple", "Durian", "Watermelon", "Kiwi", "Strawberry"]
-
+word_list2 = ['ant', 'baboon', 'badger', 'bat', 'bear', 'beaver', 'camel', 'cat', 'clam', 'cobra', 'cougar',
+    'coyote', 'crow', 'deer', 'dog', 'donkey', 'duck', 'eagle', 'ferret', 'fox', 'frog', 'goat',
+    'goose', 'hawk', 'lion', 'lizard', 'llama', 'mole', 'monkey', 'moose', 'mouse', 'mule']
+word_list3 = ['newt', 'otter', 'owl', 'panda', 'parrot', 'pigeon', 'python', 'rabbit', 'ram', 'rat', 'raven', 'rhino',
+    'salmon', 'seal', 'shark', 'sheep', 'skunk', 'sloth', 'snake', 'spider', 'stork', 'swan', 'tiger',
+    'toad', 'trout', 'turkey', 'turtle', 'weasel', 'whale', 'wolf', 'wombat', 'zebra']
 def main(): #Main structure of the Game
-    count = 6
-    current = []
-    word_r = random.choice(word_list).lower()
-    current.extend(["_"] * len(word_r))
     print("The Hangman Game")
-    g_l=[]
-
-
+    print("1. Easy")
+    print("2. Medium")
+    print("3. Hard")
+    #Set the game specifications for each level
+    difficulty = {"1": (10, word_list), "2": (8, word_list2), "3": (6, word_list3)}
+    #Loop for the user level selection and validation of input
+    while True:
+        level = input("Choose the game difficulty: ").strip()
+        if level in difficulty:
+            count, word = difficulty[level]
+            word_r = random.choice(word).lower()#chose a random item from the list
+            break
+        else:
+            print("Invalid choice. Please enter 1, 2, or 3.")
+    current = ["_"]* len(word_r)
+    g_l = []
     while count >0:
 
         if current.count("_")>0: #Check if the word is complete
